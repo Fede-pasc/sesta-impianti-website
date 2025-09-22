@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE.STA Impianti - Ristrutturazioni e Impianti a Brindisi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #0a0a0a;
+        }
+
+        :root {
+            --primary-orange: #FF6B35;
+            --secondary-orange: #FF8A65;
+            --vibrant-orange: #FF4500;
+            --secondary-gray: #8B9DC3;
+            --dark-gray: #2D2D2D;
+            --light-gray: #F8F9FA;
+            --white: #FFFFFF;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a, #2a2a2a);
+            overflow: hidden;
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            background: linear-gradient(45deg, var(--primary-orange), var(--secondary-orange));
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .shape:nth-child(1) { width: 80px; height: 80px; left: 10%; animation-delay: 0s; }
+        .shape:nth-child(2) { width: 60px; height: 60px; left: 20%; animation-delay: -2s; }
+        .shape:nth-child(3) { width: 100px; height: 100px; left: 30%; animation-delay: -4s; }
+        .shape:nth-child(4) { width: 120px; height: 120px; left: 40%; animation-delay: -6s; }
+        .shape:nth-child(5) { width: 90px; height: 90px; left: 50%; animation-delay: -8s; }
+        .shape:nth-child(6) { width: 70px; height: 70px; left: 60%; animation-delay: -10s; }
+        .shape:nth-child(7) { width: 110px; height: 110px; left: 70%; animation-delay: -12s; }
+        .shape:nth-child(8) { width: 85px; height: 85px; left: 80%; animation-delay: -14s; }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Glass Header - Modified for logo positioning */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 107, 53, 0.3);
+            padding: 15px 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(25px);
+            box-shadow: 0 10px 40px rgba(255, 107, 53, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        /* Logo positioned in top left - optimized sizing */
+        .logo {
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo img {
+            height: 60px;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo:hover img {
+            filter: brightness(1.1);
+        }
+
+        .contact-info {
+            color: var(--white);
+            text-align: right;
+        }
+
+        .contact-info a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--vibrant-orange);
+            text-shadow: 0 0 10px rgba(255, 107, 53, 0.8);
+        }
+
+        .contact-info strong {
+            color: var(--primary-orange);
+        }
+
+        /* Hero Section with 3D Effects */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, 
+                rgba(255, 107, 53, 0.1) 0%, 
+                rgba(10, 10, 10, 0.9) 50%, 
+                rgba(139, 157, 195, 0.1) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 157, 195, 0.3) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--white), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 50px rgba(255, 107, 53, 0.3);
+            animation: heroTitle 2s ease-out;
+            line-height: 1.1;
+        }
+
+        @keyframes heroTitle {
+            0% { 
+                opacity: 0; 
+                transform: translateY(50px) scale(0.8);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            color: var(--secondary-gray);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1.5s ease-out 0.5s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.5s ease-out 1s both;
+        }
+
+        .cta-button {
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+
+        .cta-button.primary {
+            background: linear-gradient(135deg, var(--primary-orange), var(--vibrant-orange));
+            color: var(--white);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--primary-orange);
+            box-shadow: 0 15px 35px rgba(255, 107, 53, 0.1);
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(255, 107, 53, 0.4);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary-orange);
+            border-color: var(--vibrant-orange);
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--white), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 1.2rem;
+            color: var(--secondary-gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            perspective: 1000px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(139, 157, 195, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 0 30px 60px rgba(255, 107, 53, 0.3);
+            border-color: var(--primary-orange);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: var(--primary-orange);
+            margin-bottom: 30px;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotateY(10deg);
+            color: var(--vibrant-orange);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .service-card p {
+            color: var(--secondary-gray);
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* About Section */
+        .about {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--white), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--secondary-gray);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .about-features {
+            list-style: none;
+            padding: 0;
+        }
+
+        .about-features li {
+            color: var(--white);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .about-features li::before {
+            content: '✓';
+            color: var(--primary-orange);
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+
+        .about-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #2a2a2a 100%);
+        }
+
+        .contact-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contact-info {
+            text-align: center;
+        }
+
+        .contact-info h2 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, var(--white), var(--primary-orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-details {
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            border-left: 4px solid #FF6B35;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.15);
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: #FF6B35;
+            margin-top: 5px;
+            min-width: 30px;
+        }
+
+        .contact-item div {
+            flex: 1;
+        }
+
+        .contact-item strong {
+            display: block;
+            font-size: 1.3rem;
+            color: #FF6B35;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-details {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #E5E7EB;
+        }
+
+        .contact-item a {
+            color: #E5E7EB;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: #FF6B35;
+            text-decoration: underline;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 107, 53, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--secondary-gray);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-orange);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 107, 53, 0.1);
+            color: var(--secondary-gray);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            header {
+                padding: 10px 0;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .logo img {
+                height: 45px;
+                max-width: 200px;
+            }
+
+            .contact-info {
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .contact-info div {
+                margin-bottom: 5px;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 6vw, 3.5rem);
+                margin-bottom: 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+                margin-bottom: 30px;
+                padding: 0 10px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .service-card {
+                padding: 25px 20px;
+            }
+
+            .service-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .service-card p {
+                font-size: 0.95rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-text h2,
+            .contact h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .contact-details {
+                gap: 20px;
+            }
+
+            .contact-item {
+                padding: 20px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .cta-button {
+                width: 100%;
+                max-width: 280px;
+                padding: 15px 25px;
+                font-size: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .footer-section h3 {
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 40px;
+                max-width: 180px;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.8rem, 5vw, 2.8rem);
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .service-card {
+                padding: 20px 15px;
+            }
+
+            .contact-item {
+                padding: 15px;
+            }
+
+            .cta-button {
+                padding: 12px 20px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Section spacing for scroll navigation */
+        section {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="logo.png" alt="SE.STA Impianti Logo">
+                </div>
+                <div class="contact-info">
+                    <div><strong>Telefono:</strong> <a href="tel:+393282356123">+39 328 235 6123</a> / <a href="tel:+393282529209">+39 328 252 9209</a></div>
+                    <div><strong>Email:</strong> <a href="mailto:sestaimpiantisnc@libero.it">sestaimpiantisnc@libero.it</a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Ristrutturazioni e Impianti di Qualità</h1>
+                <p class="hero-subtitle">
+                    Trasformiamo i tuoi spazi con soluzioni innovative e professionali. 
+                    Esperienza, qualità e affidabilità per ogni progetto a Brindisi e provincia.
+                </p>
+                <div class="cta-buttons">
+                    <button class="cta-button primary" onclick="scrollToSection('services')">I Nostri Servizi</button>
+                    <button class="cta-button secondary" onclick="scrollToSection('contact')">Contattaci</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>I Nostri Servizi</h2>
+                <p>Soluzioni complete per ogni esigenza di ristrutturazione e impiantistica</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3>Impianti Idrici</h3>
+                    <p>Progettazione e installazione di impianti idrici per uso civile e industriale, dalla progettazione alla manutenzione, con materiali certificati e di alta qualità.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3>Impianti Termici</h3>
+                    <p>Realizzazione di impianti di riscaldamento e termosanitari, caldaie e sistemi di distribuzione del calore per il massimo comfort abitativo.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⛽</div>
+                    <h3>Impianti Gas</h3>
+                    <p>Installazione e manutenzione di impianti gas metano e GPL, conformi alle normative di sicurezza vigenti, per uso domestico e industriale.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">❄️</div>
+                    <h3>Condizionamento</h3>
+                    <p>Sistemi di climatizzazione e condizionamento per ogni ambiente, con soluzioni efficienti e tecnologie all'avanguardia.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Vendita e Assistenza Caldaie</h3>
+                    <p>Vendita, installazione e assistenza tecnica per caldaie e climatizzatori delle migliori marche, con servizio post-vendita garantito.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Ristrutturazione Interni</h3>
+                    <p>Ristrutturazioni complete di interni, dalla progettazione alla realizzazione, con attenzione ai dettagli e materiali di qualità.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Chi Siamo</h2>
+                    <p>
+                        SE.STA Impianti è un'azienda specializzata in ristrutturazioni e impianti con sede a Brindisi. 
+                        Con anni di esperienza nel settore, offriamo soluzioni complete e personalizzate per ogni esigenza.
+                    </p>
+                    <p>
+                        Il nostro team di professionisti qualificati garantisce lavori di alta qualità, 
+                        utilizzando materiali certificati e rispettando i tempi di consegna concordati.
+                    </p>
+                    <ul class="about-features">
+                        <li>Personale qualificato e certificato</li>
+                        <li>Materiali di prima qualità</li>
+                        <li>Rispetto dei tempi di consegna</li>
+                        <li>Assistenza post-vendita</li>
+                        <li>Preventivi gratuiti e dettagliati</li>
+                        <li>Garanzia su tutti i lavori</li>
+                    </ul>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Impianti termici e idraulici SE.STA">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2>Contattaci</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i>📍</i>
+                            <div>
+                                <strong>Indirizzo</strong>
+                                <div class="contact-details">
+                                    Strada per Palmarini 1<br>
+                                    72100 Brindisi (BR)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>📞</i>
+                            <div>
+                                <strong>Telefono</strong>
+                                <div class="contact-details">
+                                    <a href="tel:+393282356123">+39 328 235 6123</a><br>
+                                    <a href="tel:+393282529209">+39 328 252 9209</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>✉️</i>
+                            <div>
+                                <strong>E-mail</strong>
+                                <div class="contact-details">
+                                    <a href="mailto:sestaimpiantisnc@libero.it">sestaimpiantisnc@libero.it</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i>🕒</i>
+                            <div>
+                                <strong>Orari</strong>
+                                <div class="contact-details">
+                                    Lun-Ven: 8:00-18:00<br>
+                                    Sab: 8:00-13:00
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>SE.STA Impianti</h3>
+                    <p>La tua scelta per ristrutturazioni e impianti di qualità a Brindisi e provincia.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Servizi</h3>
+                    <p><a href="#services">Impianti Idrici-Termici-Gas</a></p>
+                    <p><a href="#services">Condizionamento</a></p>
+                    <p><a href="#services">Vendita e Assistenza Caldaie</a></p>
+                    <p><a href="#services">Ristrutturazione Interni</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contatti</h3>
+                    <p>Strada per Palmarini 1, 72100 Brindisi (BR)</p>
+                    <p><a href="tel:+393282356123">+39 328 235 6123</a> / <a href="tel:+393282529209">+39 328 252 9209</a></p>
+                    <p><a href="mailto:sestaimpiantisnc@libero.it">sestaimpiantisnc@libero.it</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 SE.STA Impianti. Tutti i diritti riservati.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll function for buttons
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        // Service Cards Animation on Scroll
+        const serviceObserver = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0) rotateX(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px) rotateX(-10deg)';
+            card.style.transition = `all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) ${index * 0.1}s`;
+            serviceObserver.observe(card);
+        });
+
+        // Enhanced Cursor Effect for Service Cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                card.style.transform = 'translateY(-20px) rotateX(5deg) rotateY(0deg)';
+            });
+        });
+
+        // Parallax effect for floating shapes
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+
+    </script>
+</body>
+</html>
